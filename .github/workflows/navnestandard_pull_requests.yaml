@@ -1,0 +1,17 @@
+name: Validate PR Title
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+steps:
+      - name: Check PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          if [[ ! "$PR_TITLE" =~ ^#.+ ]]; then
+            echo "Ugyldig navn på PR, må starte med kode for opphav (f.eks. #nf)"
+            # exit 1
+          fi
+
+          echo "Gyldig PR-navn: $PR_TITLE"
