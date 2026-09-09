@@ -13,8 +13,8 @@ jobs:
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
-          if [[ ! "$PR_TITLE" =~ ^#.+ ]]; then
-            echo "Ugyldig navn på PR, må starte med kode for opphav (f.eks. #nf)"
+          if [[ ! "$PR_TITLE" =~ ^#(nf|tm).+ ]]; then
+            echo "Ugyldig navn på PR, må starte med kode for opphav (#nf eller #tm)"
             exit 1
           fi
 
